@@ -1,0 +1,211 @@
+/* @override http://looce.com/inspirationbits/public/css/style.css */
+
+@import url(reset.css);
+
+body {
+	background: url(../images/b1.jpg);
+	color: #444444;
+	font: 12px  "Helvetica neue", Helvetica, Arial, sans-serif;
+	margin: 25px 0 0;
+	
+}
+
+#wrapper {
+    width: 500px;
+	background-color: #fff;
+	padding: 25px;
+	float: left;
+	margin: 0 25px 10px;
+}
+
+#footer {
+	width: 500px;
+	float: left;
+	color: #ccc;
+	margin-left: 25px;
+	text-shadow: #827d7d 0 0 0;
+	clear: both;
+	margin-bottom: 50px;
+}
+
+a {
+    color: #000;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #3b3b3b;
+}
+
+h1, h2, h3, h4, h5, h6 { color: #000;}
+
+h1 {
+    color: #000;
+    font-size: 24px;
+    float: left;
+}
+
+h2 {
+    font-size: 18px;
+}
+
+h3.title {
+	font-size: 16px;
+}
+
+h3.success {
+	font-size: 18px;
+}
+
+h3 a {
+	text-decoration: none;
+}
+
+ul#nav {
+    font-size: 10px;
+    margin: 5px 0 0 0;
+    clear: both;
+}
+
+ul#nav li {
+    display: inline;
+    border-left: 1px solid #999;
+    padding: 0 5px 0 5px;
+}
+
+ul#nav li:first-child {
+	border: none;
+}
+
+#content {
+    float: left;
+    margin: 25px 0 0 0;
+}
+
+div.post {
+	float: left;
+	border-bottom: 1px dotted #d2d2d2;
+	padding: 25px 0 10px;
+	width: 495px;
+}
+
+.clear {
+	clear: both;
+}
+
+
+#linkForm {
+	float: left;
+	
+}
+
+label {
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 3px;
+}
+
+#linkForm input {
+	border: 1px solid #ccc;
+	height: 20px;
+	width: 300px;
+	padding: 5px;
+	font-size: 15px;
+}
+#linkForm input#submit {
+	width: 65px;
+	float: right;
+	margin-top: 5px;
+	height: 30px;
+	font-size: 12px;
+}
+
+
+#linkForm textarea {
+	width: 300px;
+	border: 1px solid #cccccc;
+	padding: 5px;
+	font-size: 15px;
+}
+
+div.errors {
+	color: #fa1a00;
+	font-style: italic;
+	margin-bottom: 20px;
+}
+
+div.errors p {
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+
+div.success {
+	color: #108917;
+	font-style: italic;
+	margin-bottom: 20px;
+}
+
+div.post img.resizeMe  {
+    width:  498px;
+}
+
+div.post p.desc {
+    margin: 10px 0 10px 0;
+}
+
+/* Upload Field */
+
+input#image {
+    height: 27px;
+}
+
+input[type="file"] > input[type="button"] {
+  height: inherit;
+  font-size: inherit;
+}
+
+ul.manage img {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+ul.manage {
+	float: right;
+}
+
+ul.manage li {
+	float: left;
+	margin-left: 10px;
+}
+
+ul#auth {
+	float: right;
+}
+
+.tab { position:absolute; overflow:hidden;
+	margin-left: 600px;
+	background: #fff;
+	padding: 20px;
+	margin-top: 5px;
+}
+.tab img { border:none;
+}
+.tabs { margin-left:0;margin-bottom:0;}
+.tabs li {background-color: #e0dfe1;display:inline;float:none;list-style:none; padding:5px;
+	border: 1px solid #e8e8e8;
+}
+.tabs li a { color:#333; display:inline; height:auto;padding:5px 15px;text-decoration:none;width:auto;}
+.tabs li.active { background-color: #fff; }
+.tabs li a.active { color:#000; }
+
+p.quote {
+	font-family: georgia;
+	font-size: 20px;
+}
+
+p.quote em {
+	font-style: italic;
+	color: #909090;
+}

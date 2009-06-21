@@ -1,0 +1,1 @@
+<link href="<?= base_url() ?>public/css/style.css" rel="stylesheet" type="text/css" media="screen" />

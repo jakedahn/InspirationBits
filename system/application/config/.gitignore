@@ -1,0 +1,3 @@
+public/upload/*
+system/logs/*.php
+*.DS_STORE
