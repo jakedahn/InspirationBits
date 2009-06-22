@@ -10,27 +10,21 @@ class Posts extends MY_Controller {
 	function index() {
 	    $this->load->model('post');
         
-        $this->load->library('pagination');
+        $this->load->library('Pagination');
         $config['base_url'] = base_url().'/posts/page/';
         $config['total_rows'] = $this->db->count_all('posts');
-        $config['per_page'] = 5;
-        $config['num_links'] = 5;
+        $config['per_page'] = 10;
         $config['full_tag_open'] = '<p>';
         $config['full_tag_close'] = '</p>';
-        
-        $offset = $this->uri->segment(3);
-        $config['cur_page'] = $offset-1;
-        
+		
         $this->pagination->initialize($config);
-        
-        
+
+        $offset = $this->uri->segment(3);
         $this->db->order_by("date", "desc"); 
-        $pp = 5;
+        $pp = 10;
                 
+		$data['tests'] = $this->db->count_all('posts');
         $data['results'] = $this->post->getPosts($pp,$offset);
-        
-	    
-	    
 
 		$this->load->view('layout', $data);
 	}
@@ -46,31 +40,27 @@ class Posts extends MY_Controller {
     function page()
     {
 	    $this->load->model('post');
-        
-        $this->load->library('pagination');
+
+        $this->load->library('Pagination');
         $config['base_url'] = base_url().'/posts/page/';
         $config['total_rows'] = $this->db->count_all('posts');
-        $config['per_page'] = 5;
-        $config['num_links'] = 5;
+        $config['per_page'] = 10;
         $config['full_tag_open'] = '<p>';
         $config['full_tag_close'] = '</p>';
-        
-        $offset = $this->uri->segment(3);
-        $config['cur_page'] = $offset-1;
-        
         $this->pagination->initialize($config);
-        
-        
+
+        $offset = $this->uri->segment(3);
         $this->db->order_by("date", "desc"); 
-        $pp = 5;
-                
+        $pp = 10;
+
         $data['results'] = $this->post->getPosts($pp,$offset);
-        
-	    
-	    
 
 		$this->load->view('layout', $data);
-    }
+	}
+
+	function vote($value='') {
+		# code...
+	}
 
 
 

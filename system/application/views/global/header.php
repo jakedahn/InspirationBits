@@ -22,8 +22,6 @@
 						<li><a href="<?= base_url()?>auth">Login</a></li>
 						<li><a href="<?= base_url()?>auth/register">Register</a></li>
 					<?php endif ?>
-						
-						
 				</ul>
                 <ul id="nav">
                     <li><a href="<?= base_url() ?>">Home</a></li>
