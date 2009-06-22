@@ -1,9 +1,11 @@
         
         <? foreach ($query->result() as $post): ?>
-            <div class="post <?=$post->type?>">
-                <h3 class="title"><a href="<?=$post->url?>" class="linkItem"><?=$post->title?></a></h3>
-                <p class="desc"><?=$post->desc?></p>
-            </div>
+			<?php if ($post->disabled == 0): ?>
+	            <div class="post <?=$post->type?>">
+	                <h3 class="title"><a href="<?=$post->url?>" class="linkItem"><?=$post->title?></a></h3>
+	                <p class="desc"><?=$post->desc?></p>
+	            </div>
+			<?endif?>
         <? endforeach?>
         
         
