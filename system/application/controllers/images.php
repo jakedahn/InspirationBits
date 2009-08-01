@@ -9,7 +9,7 @@ class Images extends MY_Controller {
 	}
 
 	function index() {
-		$this->post->fetchPosts("link");
+		$this->post->fetchPosts("image");
 	}
 	
 	function items() {
