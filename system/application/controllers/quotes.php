@@ -25,7 +25,7 @@ class Quotes extends MY_Controller {
 	function submit() {
 	    $this->form_validation->set_rules('author', 'Author', 'required|trim|htmlspecialchars');
 	    $this->form_validation->set_rules('year', 'Year', 'trim|htmlspecialchars|numeric');
-	    $this->form_validation->set_rules('text', 'Text', 'required|htmlspecialchars|trim');
+	    $this->form_validation->set_rules('text', 'Quote Text', 'required|htmlspecialchars|trim');
 
         if ($this->form_validation->run() == false) {
             $this->partial = $this->partial."_error";

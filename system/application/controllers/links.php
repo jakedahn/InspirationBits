@@ -9,13 +9,17 @@ class Links extends MY_Controller {
 	}
 
 	function index() {
-		$where = array('type'  =>  '1');
-
-		$this->db->where($where);
-		$this->db->order_by("date", "desc"); 
-		$data['query'] = $this->db->get('posts');
-
-		$this->load->view('layout', $data);
+		// $where = array('type'  =>  '1');
+		// 
+		// $this->db->where($where);
+		// $this->db->order_by("date", "desc"); 
+		// $data['query'] = $this->db->get('posts');
+		// $this->load->view('layout', $data);
+		
+		$this->post->fetchPosts("link");
+		
+		
+		
 	}
 
 	function no_partial() {
@@ -28,9 +32,8 @@ class Links extends MY_Controller {
 		$this->form_validation->set_rules('desc', 'Description', 'required|htmlspecialchars|trim');
 
 		if ($this->form_validation->run() == false) {
-			echo $this->form_validation->prep_url($this->input->post('url'));
 			$this->partial = $this->partial."_error";
-			$this->load->view('layout', $data);
+			$this->load->view('layout');
 		}
 
 		else {

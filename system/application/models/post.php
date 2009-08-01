@@ -7,6 +7,15 @@ class Post extends Model {
       $query = $this->db->get('posts', $num+1, $offset);	
       return $query;
     }
+
+	function fetchPosts($type) {
+		$this->db->select('*');
+		$this->db->from('posts');
+		$this->db->join(plural($type), plural($type).'.post_id = posts.id');
+			
+	    $data['query'] = $this->db->get();
+		$this->load->view('layout', $data);
+	}
 	
 	function getVotes($postId) {
 		$query = $this->db->get('votes')->result();
@@ -14,7 +23,7 @@ class Post extends Model {
 		return $query;
 	}
 	
-	function insertItem($postType='') {
+	function insertItem($postType='', $uploadData='') {
 		$postsData = array(
 			'user'		=>		$this->redux_auth->profile()->id,
 			'type'		=>		$postType
@@ -47,7 +56,7 @@ class Post extends Model {
 				);
 			break;
 			default:
-				echo "You forgot to specify post type in your controller..."
+				echo "You forgot to specify post type in your controller...";
 		}
 		$this->db->insert(plural($postType), $typeData);
 	}
