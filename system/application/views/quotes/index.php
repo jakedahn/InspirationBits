@@ -1,14 +1,11 @@
-        
+
         <? foreach ($query->result() as $post): ?>
-			<?php if ($post->disabled == 0): ?>
+			<?php if ($post->status == 0): ?>
 	            <div class="post <?=$post->type?>">
-	                <p class="quote"><?=$post->quote_text?> &mdash; <em><?=$post->quote_author?><?php if (!empty($post->quote_year)): ?>, <?=$post->quote_year?><?php endif ?></em></p>
+	                <p class="quote"><?=$post->text?> &mdash; <em><?=$post->author?></em></p>
 	            </div>
 			<?endif?>
         <? endforeach?>
-        
-        
-
     </div><!-- /#content -->
     <div class="clear"></div>
 </div> <!-- /#wrapper -->
