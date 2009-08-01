@@ -9,17 +9,7 @@ class Links extends MY_Controller {
 	}
 
 	function index() {
-		// $where = array('type'  =>  '1');
-		// 
-		// $this->db->where($where);
-		// $this->db->order_by("date", "desc"); 
-		// $data['query'] = $this->db->get('posts');
-		// $this->load->view('layout', $data);
-		
 		$this->post->fetchPosts("link");
-		
-		
-		
 	}
 
 	function no_partial() {

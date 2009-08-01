@@ -9,13 +9,7 @@ class Quotes extends MY_Controller {
 	}
 
 	function index() {
-	    $where = array('type'  =>  '3');
-
-	    $this->db->where($where);
-	    $this->db->order_by("date", "desc"); 
-	    $data['query'] = $this->db->get('posts');
-
-		$this->load->view('layout', $data);
+		$this->post->fetchPosts("quote");
 	}
 
 	function no_partial() {
