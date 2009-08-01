@@ -5,6 +5,7 @@ class Quotes extends MY_Controller {
 	function Quotes() {
 		parent::MY_Controller();
 		$this->load->model('redux_auth_model');
+		$this->load->model('post');
 	}
 
 	function index() {
@@ -22,17 +23,9 @@ class Quotes extends MY_Controller {
 	}
 
 	function submit() {
-	    $data = array(
-	        'type'			=>	'3',
-            'quote_author'	=>	$this->input->post('author'),
-            'quote_year'	=>	$this->input->post('year'),
-            'quote_text'	=>	$this->input->post('quote'),
-			'user'			=>	$this->redux_auth->profile()->id
-        ); 
-
 	    $this->form_validation->set_rules('author', 'Author', 'required|trim|htmlspecialchars');
 	    $this->form_validation->set_rules('year', 'Year', 'trim|htmlspecialchars|numeric');
-	    $this->form_validation->set_rules('quote', 'Quote', 'required|htmlspecialchars|trim');
+	    $this->form_validation->set_rules('text', 'Text', 'required|htmlspecialchars|trim');
 
         if ($this->form_validation->run() == false) {
             $this->partial = $this->partial."_error";
@@ -40,7 +33,7 @@ class Quotes extends MY_Controller {
         }
 
         else {
-            $this->db->insert('posts', $data);
+            $this->post->insertItem("quote");
             redirect('/quotes/success');
         }
 	}

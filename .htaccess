@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteCond $1 !^(index\.php|public)
+RewriteCond $1 !^(index\.php|public|test\.html)
 RewriteRule ^(.*)$ index.php?/$1 [L]
 
 # Options FollowSymLinks

@@ -58,8 +58,26 @@ class Posts extends MY_Controller {
 		$this->load->view('layout', $data);
 	}
 
-	function vote($value='') {
-		# code...
+	function vote() {
+		$this->load->model('vote');
+		$arrayData = array(
+			'post_id'	=>	$_POST['post_id'],
+			'user_id'	=>	$this->redux_auth->profile()->id,
+			'vote'		=>	$_POST['vote']
+			);
+		if ($this->redux_auth->logged_in()) {
+			
+			if ($this->vote->present()) {
+				$this->vote->update($arrayData);
+			}
+			else {
+				$this->vote->insert($arrayData);
+			}
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
 	}
 
 

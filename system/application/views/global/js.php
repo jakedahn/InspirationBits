@@ -1,6 +1,7 @@
 <script src="<?= base_url() ?>public/js/mootools.core.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>public/js/mootools.more.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>public/js/tabs.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>public/js/vote.js" type="text/javascript"></script>
 
 <script type="text/javascript" charset="utf-8">
 

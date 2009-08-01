@@ -209,3 +209,35 @@ p.quote em {
 	font-style: italic;
 	color: #909090;
 }
+
+.copyright a {
+    color: #919191;
+}
+
+.copyright a:hover {
+    color: #B5B5B5;
+}
+
+.vote {
+	float: left;
+	width: 500px;
+}
+
+.like {
+	display: block;
+	width: 13px;
+	background: url(../images/votehand.gif)top left;
+	text-indent: -9999px;
+	float: left;
+	height: 16px;
+}
+
+.dislike {
+	display: block;
+	width: 13px;
+	background: url(../images/votehand.gif)top right;
+	text-indent: -9999px;
+	float: left;
+	margin-left: 5px;
+	height: 16px;
+}
