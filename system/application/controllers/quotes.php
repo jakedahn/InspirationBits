@@ -30,7 +30,6 @@ class Quotes extends MY_Controller {
             redirect('/quotes/success');
         }
 	}
-
     function success()  {
         $this->load->view('layout');
     }

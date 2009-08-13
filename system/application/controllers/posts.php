@@ -20,12 +20,22 @@ class Posts extends MY_Controller {
         $this->pagination->initialize($config);
 
         $offset = $this->uri->segment(3);
-        $this->db->order_by("date", "desc"); 
         $pp = 10;
                 
 		$data['tests'] = $this->db->count_all('posts');
-        $data['results'] = $this->post->getPosts($pp,$offset);
 
+		$this->db->select('*');
+		$this->db->from('posts');
+		$this->db->join('images', 'images'.'.post_id = posts.id');
+		$this->db->join('quotes', 'quotes'.'.post_id = posts.id');
+		$this->db->join('links', 'links'.'.post_id = posts.id');
+		
+		echo "<pre>";
+		print_r($this->db->get());
+		echo "</pre>";
+		
+		$data['results'] = $this->db->get();
+		
 		$this->load->view('layout', $data);
 	}
 

@@ -12,17 +12,17 @@ class Post extends Model {
 		$this->db->select('*');
 		$this->db->from('posts');
 		$this->db->join(plural($type), plural($type).'.post_id = posts.id');
-			
+
 	    $data['query'] = $this->db->get();
 		$this->load->view('layout', $data);
 	}
-	
+
 	function getVotes($postId) {
 		$query = $this->db->get('votes')->result();
 		$this->db->where('post_id', $postId);
 		return $query;
 	}
-	
+
 	function insertItem($postType='', $uploadData='') {
 		$postsData = array(
 			'user'		=>		$this->redux_auth->profile()->id,

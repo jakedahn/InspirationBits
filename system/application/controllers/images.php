@@ -27,10 +27,10 @@ class Images extends MY_Controller {
 	}
 	
 	function upload() {
-		
+
 		$this->form_validation->set_rules('title', 'Title', 'required|trim');
 		$this->form_validation->set_rules('text', 'Description', 'required|htmlspecialchars|trim');
-		
+
 		$config['upload_path'] = './public/upload/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size'] = '2048';
@@ -47,7 +47,7 @@ class Images extends MY_Controller {
 	        }
 	
 			$this->load->view('layout', $data);
-		}	
+		}
 		else {
 			if ($this->form_validation->run() == false) {
 				$data['error'] = $this->upload->display_errors('<span class="error">', "</span>");
@@ -60,7 +60,6 @@ class Images extends MY_Controller {
 
 				redirect('/images/success');
 			}
-
 		}
 	}
 
