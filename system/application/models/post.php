@@ -2,6 +2,16 @@
 class Post extends Model {
     function Post() {
         parent::Model();
+
+		$this->posts_table 		= 'responses';
+		$this->users_table 			= 'users';
+		$this->questions_table		= 'questions';
+		
+		$this->posts_table 		= 'posts';
+		$this->images_table 	= 'images';
+		$this->quotes_table 	= 'quotes';
+		$this->links_table		= 'links';
+		
     }
     function getPosts($num, $offset) {
       $query = $this->db->get('posts', $num+1, $offset);	
@@ -15,6 +25,25 @@ class Post extends Model {
 
 	    $data['query'] = $this->db->get();
 		$this->load->view('layout', $data);
+	}
+	
+	function grabPosts() {
+		
+		$this->db->from($this->posts_table);
+		$this->db->where($this->posts_table . '.status', '0');
+		$this->db->join($this->images_table, "{$this->images_table}.post_id = {$this->posts_table}.id");
+		$this->db->join($this->quotes_table, "{$this->quotes_table}.post_id = {$this->posts_table}.id");
+		$this->db->join($this->links_table,   "{$this->links_table}.post_id = {$this->posts_table}.id");
+
+		// $this->db->limit($limit);
+		// $this->db->offset($offset);
+		// $this->db->order_by($this->posts_table . '.date', 'desc');
+		
+		$query						= $this->db->get();	
+		$results					= $query->result();
+				
+		return false;
+		
 	}
 
 	function getVotes($postId) {

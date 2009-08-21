@@ -8,35 +8,55 @@ class Posts extends MY_Controller {
 	}
 
 	function index() {
-	    $this->load->model('post');
-        
-        $this->load->library('Pagination');
-        $config['base_url'] = base_url().'/posts/page/';
-        $config['total_rows'] = $this->db->count_all('posts');
-        $config['per_page'] = 10;
-        $config['full_tag_open'] = '<p>';
-        $config['full_tag_close'] = '</p>';
 		
-        $this->pagination->initialize($config);
+	    $this->load->model('post');
+	
+		$this->posts_table 		= 'posts';
+		$this->images_table 	= 'images';
+		$this->quotes_table 	= 'quotes';
+		$this->links_table		= 'links';
+				
+		$this->db->from($this->posts_table);
+		$this->db->where($this->posts_table . '.status', '0');
+		$this->db->join($this->images_table, "{$this->images_table}.post_id = {$this->posts_table}.id");
+		// $this->db->join($this->quotes_table, "{$this->quotes_table}.post_id = {$this->posts_table}.id");
+		// $this->db->join($this->links_table,   "{$this->links_table}.post_id = {$this->posts_table}.id");
 
-        $offset = $this->uri->segment(3);
-        $pp = 10;
-                
-		$data['tests'] = $this->db->count_all('posts');
-
-		$this->db->select('*');
-		$this->db->from('posts');
-		$this->db->join('images', 'images'.'.post_id = posts.id');
-		$this->db->join('quotes', 'quotes'.'.post_id = posts.id');
-		$this->db->join('links', 'links'.'.post_id = posts.id');
+		// $this->db->limit($limit);
+		// $this->db->offset($offset);
+		// $this->db->order_by($this->posts_table . '.date', 'desc');
+		
+		$query						= $this->db->get();	
+		$results					= $query->result();
+		
 		
 		echo "<pre>";
-		print_r($this->db->get());
+		print_r($results);
 		echo "</pre>";
 		
-		$data['results'] = $this->db->get();
-		
-		$this->load->view('layout', $data);
+
+//         
+//         $this->load->library('Pagination');
+//         $config['base_url'] = base_url().'/posts/page/';
+//         $config['total_rows'] = $this->db->count_all('posts');
+//         $config['per_page'] = 10;
+//         $config['full_tag_open'] = '<p>';
+//         $config['full_tag_close'] = '</p>';
+// 		
+//         $this->pagination->initialize($config);
+// 
+//         $offset = $this->uri->segment(3);
+//         $pp = 10;
+//                 
+// 		$data['result'] = $this->post->grabPosts(0, 10);
+// 
+// 		$this->post->grabPosts();
+// 
+// 
+// echo "<pre>";
+// print_r($this->db->last_query());
+// echo "</pre>";
+		// $this->load->view('layout', $data);
 	}
 
 	function about() {
