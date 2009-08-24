@@ -11,30 +11,18 @@ class Posts extends MY_Controller {
 		
 	    $this->load->model('post');
 	
-		$this->posts_table 		= 'posts';
-		$this->images_table 	= 'images';
-		$this->quotes_table 	= 'quotes';
-		$this->links_table		= 'links';
-				
-		$this->db->from($this->posts_table);
-		$this->db->where($this->posts_table . '.status', '0');
-		$this->db->join($this->images_table, "{$this->images_table}.post_id = {$this->posts_table}.id");
-		// $this->db->join($this->quotes_table, "{$this->quotes_table}.post_id = {$this->posts_table}.id");
-		// $this->db->join($this->links_table,   "{$this->links_table}.post_id = {$this->posts_table}.id");
-
-		// $this->db->limit($limit);
-		// $this->db->offset($offset);
-		// $this->db->order_by($this->posts_table . '.date', 'desc');
-		
-		$query						= $this->db->get();	
-		$results					= $query->result();
+		// $this->post->grabPosts();
 		
 		
 		echo "<pre>";
-		print_r($results);
+		print_r($this->post->grabPosts());
 		echo "</pre>";
 		
 
+		echo "<pre>";
+			print_r($this->db->last_query());
+		echo "</pre>";
+				
 //         
 //         $this->load->library('Pagination');
 //         $config['base_url'] = base_url().'/posts/page/';

@@ -2,16 +2,17 @@
 class Post extends Model {
     function Post() {
         parent::Model();
-
-		$this->posts_table 		= 'responses';
-		$this->users_table 			= 'users';
-		$this->questions_table		= 'questions';
 		
 		$this->posts_table 		= 'posts';
 		$this->images_table 	= 'images';
 		$this->quotes_table 	= 'quotes';
 		$this->links_table		= 'links';
 		
+		$this->posts_fields		= array('id', 'type', 'user', 'date', 'status');
+		$this->images_fields	= array('id', 'title', 'text', 'url', 'date', 'post_id');
+		$this->quotes_fields	= array('id', 'text', 'author', 'date', 'post_id');
+		$this->links_fields		= array('id', 'title', 'text', 'url', 'date', 'post_id');
+
     }
     function getPosts($num, $offset) {
       $query = $this->db->get('posts', $num+1, $offset);	
@@ -28,22 +29,46 @@ class Post extends Model {
 	}
 	
 	function grabPosts() {
-		
+
+		$aliases = $this->build_db_select_with_aliases(
+			array(
+				$this->posts_table 		=> $this->posts_fields,
+				$this->images_table 	=> $this->images_fields,
+				$this->quotes_table 	=> $this->quotes_fields, 
+				$this->links_table 		=> $this->links_fields
+			)
+		);
+
+		$this->db->select($aliases);
+
 		$this->db->from($this->posts_table);
 		$this->db->where($this->posts_table . '.status', '0');
-		$this->db->join($this->images_table, "{$this->images_table}.post_id = {$this->posts_table}.id");
-		$this->db->join($this->quotes_table, "{$this->quotes_table}.post_id = {$this->posts_table}.id");
-		$this->db->join($this->links_table,   "{$this->links_table}.post_id = {$this->posts_table}.id");
+
+
+		$query						= $this->db->get();	
+		$results					= $query->result();
 
 		// $this->db->limit($limit);
 		// $this->db->offset($offset);
 		// $this->db->order_by($this->posts_table . '.date', 'desc');
-		
-		$query						= $this->db->get();	
-		$results					= $query->result();
-				
+
 		return false;
-		
+
+
+
+	}
+
+	private function build_db_select_with_aliases($array) {
+
+		$temp_alias_string = '';
+
+		foreach($array as $table => $fields) {
+			$table_sigular = singular($table);
+			foreach($fields as $field) {
+				$temp_alias_string .= $table . '.' . $field . ' AS ' . $table_sigular . '_' . $field . ', ';
+			}
+		}
+		return $temp_alias_string;		
 	}
 
 	function getVotes($postId) {
