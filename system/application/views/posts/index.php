@@ -1,50 +1,24 @@
 		<h2>Posts</h2>
-		<?= $this->pagination->create_links(); ?>
-
-		<? foreach ($results->result() as $post): ?>
-			<?php if ($post->status == 0): ?>
-				<?php if ($post->type == "link"): ?>
-					<div id="postId-<?=$post->id?>" class="post <?=$post->type?>">
+<pre style="height:200px; overflow:scroll; border:1px dotted #8F8F8F; background: rgba(0,0,0,0.08);">
+	<?= print_r($results); ?>
+</pre>
+		<? foreach ($results as $result): ?>
+			<?php if ($result->status == 0): ?>
+				<?php if ($result->post_type == "link"): ?>
+					<div id="postId-<?=$result->post_id?>" class="post <?=$result->post_type?>">
 						<?php if($this->redux_auth->logged_in()): ?>
-							<div id="<?=$post->id?>" class="vote">
+							<div id="<?=$result->post_id?>" class="vote">
 								<ul>
 									<li><a class="like">Like</a></li>
 									<li><a class="dislike">Dislike</a></li>
 								</ul>
 							</div>
 						<?php endif ?>
-						<h3 class="title"><a href="<?=$post->url?>" class="linkItem"><?=$post->title?></a></h3>
-						<p class="text"><?=$post->text?></p>
+						<h3 class="title"><a href="<?=$result->link_url?>" class="linkItem"><?=$result->link_title?></a></h3>
+						<p class="text"><?=$result->text?></p>
 					</div>
 				<?php endif ?>
-				<?php if ($post->type == "image"): ?>
-					<div id="postId-<?=$post->id?>" class="post <?=$post->type?>">
-						<?php if($this->redux_auth->logged_in()): ?>
-							<div id="<?=$post->id?>" class="vote">
-								<ul>
-									<li><a class="like">Like</a></li>
-									<li><a class="dislike">Dislike</a></li>
-								</ul>
-							</div>
-						<?php endif ?>
-						<h3 class="title"><?=$post->title?></h3>
-						<p class="text"><?=$post->text?></p>
-						<img src="<?=$post->url?>" alt="<?=$post->title?>" title="<?=$post->title?>"/>
-					</div>
-				<?php endif ?>
-				<?php if ($post->type == "quote"): ?>
-					<div id="postId-<?=$post->id?>" class="post <?=$post->type?>">
-						<?php if($this->redux_auth->logged_in()): ?>
-							<div id="<?=$post->id?>" class="vote">
-								<ul>
-									<li><a class="like">Like</a></li>
-									<li><a class="dislike">Dislike</a></li>
-								</ul>
-							</div>
-						<?php endif ?>
-						<p class="quote"><?=$post->text?> &mdash; <em><?=$post->author?></em></p>
-					</div>
-				<?php endif ?>
+				
 			<?php endif ?>
 		<? endforeach?>
 		

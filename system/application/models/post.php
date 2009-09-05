@@ -38,21 +38,22 @@ class Post extends Model {
 				$this->links_table 		=> $this->links_fields
 			)
 		);
-
+		
 		$this->db->select($aliases);
-
+		$this->db->join($this->images_table, $this->images_table . '.post_id = ' . $this->posts_table .'.id', 'left');
+		$this->db->join($this->quotes_table, $this->quotes_table . '.post_id = ' . $this->posts_table .'.id', 'left');
+		$this->db->join($this->links_table, $this->links_table . '.post_id = ' . $this->posts_table .'.id', 'left');
+		
+		
 		$this->db->from($this->posts_table);
 		$this->db->where($this->posts_table . '.status', '0');
 
 
-		$query						= $this->db->get();	
+		$query						= $this->db->get();
 		$results					= $query->result();
+		
 
-		// $this->db->limit($limit);
-		// $this->db->offset($offset);
-		// $this->db->order_by($this->posts_table . '.date', 'desc');
-
-		return false;
+		return $results;
 
 
 

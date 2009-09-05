@@ -11,40 +11,11 @@ class Posts extends MY_Controller {
 		
 	    $this->load->model('post');
 	
-		// $this->post->grabPosts();
 		
+		$data['results'] = $this->post->grabPosts();
 		
-		echo "<pre>";
-		print_r($this->post->grabPosts());
-		echo "</pre>";
+		$this->load->view('layout', $data);
 		
-
-		echo "<pre>";
-			print_r($this->db->last_query());
-		echo "</pre>";
-				
-//         
-//         $this->load->library('Pagination');
-//         $config['base_url'] = base_url().'/posts/page/';
-//         $config['total_rows'] = $this->db->count_all('posts');
-//         $config['per_page'] = 10;
-//         $config['full_tag_open'] = '<p>';
-//         $config['full_tag_close'] = '</p>';
-// 		
-//         $this->pagination->initialize($config);
-// 
-//         $offset = $this->uri->segment(3);
-//         $pp = 10;
-//                 
-// 		$data['result'] = $this->post->grabPosts(0, 10);
-// 
-// 		$this->post->grabPosts();
-// 
-// 
-// echo "<pre>";
-// print_r($this->db->last_query());
-// echo "</pre>";
-		// $this->load->view('layout', $data);
 	}
 
 	function about() {
