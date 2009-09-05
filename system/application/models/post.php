@@ -7,7 +7,7 @@ class Post extends Model {
 		$this->images_table 	= 'images';
 		$this->quotes_table 	= 'quotes';
 		$this->links_table		= 'links';
-		
+
 		$this->posts_fields		= array('id', 'type', 'user', 'date', 'status');
 		$this->images_fields	= array('id', 'title', 'text', 'url', 'date', 'post_id');
 		$this->quotes_fields	= array('id', 'text', 'author', 'date', 'post_id');
@@ -27,9 +27,8 @@ class Post extends Model {
 	    $data['query'] = $this->db->get();
 		$this->load->view('layout', $data);
 	}
-	
-	function grabPosts() {
 
+	function grabAllPosts() {
 		$aliases = $this->build_db_select_with_aliases(
 			array(
 				$this->posts_table 		=> $this->posts_fields,
@@ -38,29 +37,21 @@ class Post extends Model {
 				$this->links_table 		=> $this->links_fields
 			)
 		);
-		
+
 		$this->db->select($aliases);
 		$this->db->join($this->images_table, $this->images_table . '.post_id = ' . $this->posts_table .'.id', 'left');
 		$this->db->join($this->quotes_table, $this->quotes_table . '.post_id = ' . $this->posts_table .'.id', 'left');
 		$this->db->join($this->links_table, $this->links_table . '.post_id = ' . $this->posts_table .'.id', 'left');
-		
-		
+
 		$this->db->from($this->posts_table);
 		$this->db->where($this->posts_table . '.status', '0');
 
-
-		$query						= $this->db->get();
-		$results					= $query->result();
-		
-
+		$query		= $this->db->get();
+		$results	= $query->result();
 		return $results;
-
-
-
 	}
 
 	private function build_db_select_with_aliases($array) {
-
 		$temp_alias_string = '';
 
 		foreach($array as $table => $fields) {
@@ -69,7 +60,7 @@ class Post extends Model {
 				$temp_alias_string .= $table . '.' . $field . ' AS ' . $table_sigular . '_' . $field . ', ';
 			}
 		}
-		return $temp_alias_string;		
+		return $temp_alias_string;
 	}
 
 	function getVotes($postId) {
@@ -84,12 +75,12 @@ class Post extends Model {
 			'type'		=>		$postType
 		); 
 		$this->db->insert('posts', $postsData);	
-		
+
 		switch ($postType) {
 			case "link":
 				$typeData = array(
 					'title'		=>		$this->input->post('title'),
-					'text'		=>		$this->input->post('text'),
+					'desc'		=>		$this->input->post('text'),
 					'url'		=>		$this->input->post('url'),
 					'post_id'	=>		$this->db->insert_id()
 				);
@@ -98,14 +89,13 @@ class Post extends Model {
 				$typeData = array(
 					'text'		=>		$this->input->post('text'),
 					'author'	=>		$this->input->post('author'),
-					'year'		=>		$this->input->post('year'),
 					'post_id'	=>		$this->db->insert_id()
 				);
 			break;
 			case "image":
 				$typeData = array(
 					'title'		=>		$this->input->post('title'),
-					'text'		=>		$this->input->post('text'),
+					'desc'		=>		$this->input->post('text'),
 					'url'		=>		base_url().'public/upload/'.$uploadData['file_name'],
 					'post_id'	=>		$this->db->insert_id()
 				);

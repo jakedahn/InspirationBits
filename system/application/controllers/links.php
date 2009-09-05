@@ -25,7 +25,6 @@ class Links extends MY_Controller {
 			$this->partial = $this->partial."_error";
 			$this->load->view('layout');
 		}
-
 		else {
 			$this->post->insertItem("link");
 			redirect('/links/success');
