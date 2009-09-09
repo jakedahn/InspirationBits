@@ -5,6 +5,8 @@ class Manage extends MY_Controller {
 	function Manage() {
 		parent::MY_Controller();
 		$this->load->model('redux_auth_model');
+		$this->load->model('post');
+	    
 }
 
 	function index() {
@@ -12,12 +14,11 @@ class Manage extends MY_Controller {
 			redirect('auth');
 		}
 		else{
-		    $this->load->model('post');
 			$data['profile'] = $this->redux_auth->profile();
 		
 			$this->db->where('user', $this->redux_auth->profile()->id);
-			$data['fetchUserPosts'] = $this->db->get('posts');
-			    
+			$data['results'] = $this->post->grabAllPosts();
+			
 			$this->load->view('layout', $data);
 		}
 	}
@@ -32,7 +33,7 @@ class Manage extends MY_Controller {
 		
 		if ($this->redux_auth->profile()->id == @$getPost[0]->user) {
 			$this->db->where('id', $this->uri->segment(3));
-			$this->db->update('posts', array('disabled' => 1));
+			$this->db->update('posts', array('status' => 1));
 			
 			// $result = "Item has been successfully deleted";
 			redirect('manage');

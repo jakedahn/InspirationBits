@@ -8,7 +8,7 @@ class Post extends Model {
 		$this->quotes_table 	= 'quotes';
 		$this->links_table		= 'links';
 
-		$this->posts_fields		= array('id', 'type', 'user', 'date', 'status');
+		$this->posts_fields		= array('id', 'type', 'user', 'date', 'votes', 'status');
 		$this->images_fields	= array('id', 'title', 'text', 'url', 'date', 'post_id');
 		$this->quotes_fields	= array('id', 'text', 'author', 'date', 'post_id');
 		$this->links_fields		= array('id', 'title', 'text', 'url', 'date', 'post_id');
@@ -45,13 +45,15 @@ class Post extends Model {
 
 		$this->db->from($this->posts_table);
 		$this->db->where($this->posts_table . '.status', '0');
+		$this->db->order_by($this->posts_table . '.date', 'desc');
 
 		$query		= $this->db->get();
 		$results	= $query->result();
+
 		return $results;
 	}
 
-	private function build_db_select_with_aliases($array) {
+	function build_db_select_with_aliases($array) {
 		$temp_alias_string = '';
 
 		foreach($array as $table => $fields) {
@@ -80,7 +82,7 @@ class Post extends Model {
 			case "link":
 				$typeData = array(
 					'title'		=>		$this->input->post('title'),
-					'desc'		=>		$this->input->post('text'),
+					'text'		=>		$this->input->post('desc'),
 					'url'		=>		$this->input->post('url'),
 					'post_id'	=>		$this->db->insert_id()
 				);
@@ -95,7 +97,7 @@ class Post extends Model {
 			case "image":
 				$typeData = array(
 					'title'		=>		$this->input->post('title'),
-					'desc'		=>		$this->input->post('text'),
+					'text'		=>		$this->input->post('desc'),
 					'url'		=>		base_url().'public/upload/'.$uploadData['file_name'],
 					'post_id'	=>		$this->db->insert_id()
 				);

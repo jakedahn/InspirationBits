@@ -219,11 +219,11 @@ p.quote em {
 }
 
 .vote {
-	float: left;
-	width: 500px;
+	float: right;
+    
 }
 
-.like {
+a.like {
 	display: block;
 	width: 13px;
 	background: url(../images/votehand.gif)top left;
@@ -232,7 +232,7 @@ p.quote em {
 	height: 16px;
 }
 
-.dislike {
+a.dislike {
 	display: block;
 	width: 13px;
 	background: url(../images/votehand.gif)top right;
@@ -241,3 +241,8 @@ p.quote em {
 	margin-left: 5px;
 	height: 16px;
 }
+
+.vote li {float: left;}
+.votes {font-weight: bold; margin-left: 5px;}
+li.value {float: left; font-weight: normal; margin-left: 5px;}
+.count {font-weight: normal;}

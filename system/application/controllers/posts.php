@@ -51,16 +51,14 @@ class Posts extends MY_Controller {
 			'vote'		=>	$_POST['vote']
 			);
 		if ($this->redux_auth->logged_in()) {
-			
-			if ($this->vote->present()) {
-				$this->vote->update($arrayData);
-			}
-			else {
-				$this->vote->insert($arrayData);
-			}
+
+			$this->vote->updateVotes($arrayData);
+						
+			echo "Success.";
 			return TRUE;
 		}
 		else {
+			echo "Failed.";
 			return FALSE;
 		}
 	}
