@@ -33,6 +33,9 @@ a {
     font-weight: bold;
 }
 
+.delete a {
+    text-decoration: none;
+}
 a:hover {
     color: #3b3b3b;
 }
@@ -130,7 +133,7 @@ label {
 	font-size: 15px;
 }
 
-div.errors {
+div.errors, .error {
 	color: #fa1a00;
 	font-style: italic;
 	margin-bottom: 20px;
@@ -141,7 +144,7 @@ div.errors p {
 	margin-bottom: 15px;
 }
 
-div.success {
+div.success, .success {
 	color: #108917;
 	font-style: italic;
 	margin-bottom: 20px;
@@ -246,3 +249,7 @@ a.dislike {
 .votes {font-weight: bold; margin-left: 5px;}
 li.value {float: left; font-weight: normal; margin-left: 5px;}
 .count {font-weight: normal;}
+
+fieldset.auth {
+    margin-bottom: 10px;
+}

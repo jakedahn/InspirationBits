@@ -1,12 +1,17 @@
 
-        <? foreach ($query->result() as $post): ?>
-			<?php if ($post->status == 0): ?>
-	            <div class="post <?=$post->type?>">
-	                <h3 class="title"><?=$post->title?></h3>
-	                <p class="desc"><?=$post->text?></p>
-	                <img src="<?=$post->url?>" alt="<?=$post->text?>" title="<?=$post->title?>"/>
-	            </div>
-			<?endif?>
+		<? foreach ($results as $result): $data['result'] = $result; ?>
+			<?php if ($result->post_status == 0): ?>
+				<?php if ($result->post_type == "image"): ?>
+					<div id="postId-<?=$result->post_id?>" class="post <?=$result->post_type?>">
+						<h3 class="title"><?=$result->image_title?></h3>
+						<p class="text"><?=$result->image_text?></p>
+						<img src="<?=$result->image_url?>" alt="<?=$result->image_title?>" title="<?=$result->image_title?>"/>
+					<?php if($this->redux_auth->logged_in()): ?>
+						<? $this->load->view('forms/voteForm', $data);?>
+					<?php endif ?>
+					</div>
+				<?php endif ?>
+			<?php endif ?>
         <? endforeach?>
 
     </div><!-- /#content -->

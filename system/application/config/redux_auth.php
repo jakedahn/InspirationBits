@@ -45,7 +45,7 @@
 	
 	/**
 	 * Folder where email templates are stored.
-     * Default : redux_auth/
+	 * Default : redux_auth/
 	 **/
 	$config['email_templates'] = 'redux_auth/';
 
@@ -56,11 +56,11 @@
 	
 	$config['encryption_key'] = "7fdbd0f2211488a470327ddf9b1d5be6"; // Generate a random key.
 
-    $config['sess_encrypt_cookie']     =  TRUE;
-    $config['sess_use_database']      =  TRUE;
-    $config['sess_match_ip']               =  TRUE;
-    $config['sess_match_useragent'] =  TRUE;
+	$config['sess_encrypt_cookie']		=	TRUE;
+	$config['sess_use_database']		=	TRUE;
+	$config['sess_match_ip']			=	TRUE;
+	$config['sess_match_useragent']		=	TRUE;
 
-    $config['sess_table_name'] = 'sessions';
-    
+	$config['sess_table_name'] = 'sessions';
+	
 ?>

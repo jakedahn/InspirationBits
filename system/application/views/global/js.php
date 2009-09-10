@@ -15,19 +15,21 @@
 			});
 		<?endif ?>
 		
-		var img = $$('img');
-		for (var i=0;i<img.length;i++)
-		{
-			var theWidth = img[i].getDimensions();
-			var	theImage = img[i];
+		function shrinkOversized() {
+			var img = $$('img');
+			for (var i=0;i<img.length;i++)
+			{
+				var theWidth = img[i].getDimensions();
+				var	theImage = img[i];
 
-			if (theWidth.width >= 498) {
-				theImage.set('styles', {
-				    'width': '498px'
-				});
-			};
+				if (theWidth.width >= 498) {
+					theImage.set('styles', {
+					    'width': '498px'
+					});
+				};
+			}
 		}
-	
+		shrinkOversized.delay('1');
 	});
 
 </script>

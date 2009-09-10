@@ -11,11 +11,11 @@ window.addEvent('domready',function(){
             if (this.getParent().hasClass('faded')) {
                 this.getParent().getParent().getChildren('.dislike').fade(1.0);
             };
-            
-            this.getParent().getParent().getChildren('.value').fade(0.0);
-            this.getParent().getParent().getChildren(".value").set('text', voteValue--);
-            this.getParent().getParent().getChildren('.value').fade(1.0);
-            
+            // 
+            // this.getParent().getParent().getChildren('.value').fade(0.0);
+            // this.getParent().getParent().getChildren(".value").set('text', voteValue--);
+            // this.getParent().getParent().getChildren('.value').fade(1.0);
+            // 
             
             // this.getParent().getParent().getChildren('li.votes').getChildren('span.count').fade(0)
             

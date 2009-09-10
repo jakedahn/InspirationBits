@@ -9,16 +9,7 @@ class Images extends MY_Controller {
 	}
 
 	function index() {
-		$this->post->fetchPosts("image");
-	}
-	
-	function items() {
-		$where = array('type'  => '2', 'id' => $this->uri->segment(3));
-		
-		$this->db->where($where);
-		$this->db->order_by("date", "desc"); 
-		$data['query'] = $this->db->get('posts');
-		echo $this->db->last_query();
+		$data['results'] = $this->post->grabAllPosts();
 		$this->load->view('layout', $data);
 	}
 
@@ -29,7 +20,7 @@ class Images extends MY_Controller {
 	function upload() {
 
 		$this->form_validation->set_rules('title', 'Title', 'required|trim');
-		$this->form_validation->set_rules('text', 'Description', 'required|htmlspecialchars|trim');
+		$this->form_validation->set_rules('desc', 'Description', 'required|htmlspecialchars|trim');
 
 		$config['upload_path'] = './public/upload/';
 		$config['allowed_types'] = 'gif|jpg|png';
@@ -43,17 +34,16 @@ class Images extends MY_Controller {
 			$this->partial = $this->partial."_error";
 			
 			if ($this->form_validation->run() == false) {
-	            $this->load->view('layout', $data);
-	        }
-	
+				$this->load->view('layout', $data);
+			}
 			$this->load->view('layout', $data);
 		}
 		else {
 			if ($this->form_validation->run() == false) {
 				$data['error'] = $this->upload->display_errors('<span class="error">', "</span>");
-	            $this->partial = $this->partial."_error";
-	            $this->load->view('layout', $data);
-	        }
+				$this->partial = $this->partial."_error";
+				$this->load->view('layout', $data);
+			}
 			else {
 				$uploadData = $this->upload->data();
 				$this->post->insertItem("image", $uploadData);

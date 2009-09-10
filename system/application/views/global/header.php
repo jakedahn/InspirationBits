@@ -6,8 +6,9 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title>Inspiration</title>
         <? $this->load->view('global/meta'); ?>
-        <? $this->load->view('global/js'); ?>
         <? $this->load->view('global/css'); ?>
+        <? $this->load->view('global/js'); ?>
+
     </head>
     <body>
         <div id="wrapper">

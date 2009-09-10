@@ -9,7 +9,8 @@ class Links extends MY_Controller {
 	}
 
 	function index() {
-		$this->post->fetchPosts("link");
+		$data['results'] = $this->post->grabAllPosts();
+		$this->load->view('layout', $data);
 	}
 
 	function no_partial() {
