@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>currentDocument</key>
+	<string>system/application/config/database.php</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -18,10 +20,29 @@
 	<key>fileHierarchyDrawerWidth</key>
 	<integer>255</integer>
 	<key>metaData</key>
-	<dict/>
+	<dict>
+		<key>system/application/config/database.php</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>19</integer>
+		</dict>
+	</dict>
+	<key>openDocuments</key>
+	<array>
+		<string>system/application/config/database.php</string>
+	</array>
 	<key>showFileHierarchyDrawer</key>
-	<true/>
+	<false/>
 	<key>windowFrame</key>
-	<string>{{1944, 29}, {894, 647}}</string>
+	<string>{{382, 29}, {894, 647}}</string>
 </dict>
 </plist>
