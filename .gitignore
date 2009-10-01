@@ -1,3 +1,1 @@
-.tmproj
-.DS_Store
-public/upload/*
+system/application/config/database.php
