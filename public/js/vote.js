@@ -1,4 +1,4 @@
-var vote = new Request({method: 'post', url: 'http://looce.com/inspirationbits/posts/vote'});
+var vote = new Request({method: 'post', url: '/posts/vote'});
 
 window.addEvent('domready',function(){
     $$('.vote a').addEvent('click', function(){

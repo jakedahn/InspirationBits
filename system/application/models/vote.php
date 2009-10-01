@@ -30,10 +30,10 @@ class Vote extends Model {
 			}
 			else {
 				if ($arrayData['vote'] == "up") {
-					$this->increment($arrayData);
+					$this->increment($arrayData, 2);
 				}
 				if ($arrayData['vote'] == "down") {
-					$this->decrement($arrayData);
+					$this->decrement($arrayData, 2);
 				}
 			}
 			$this->vote->update($arrayData);
@@ -51,8 +51,8 @@ class Vote extends Model {
 	}
 
 	function update($arrayData) {
-		$this->db->where('user_id', $this->redux_auth->profile()->id);
-		$this->db->where('post_id', $_POST['post_id']);
+		$this->db->where('user_id', $arrayData['user_id']);
+		$this->db->where('post_id', $arrayData['post_id']);
 		
 		$this->db->set($arrayData);
 		if ($this->db->update('votes')) {
@@ -80,9 +80,9 @@ class Vote extends Model {
 		return $results;
 	}
 	
-	function increment($arrayData) {
+	function increment($arrayData, $inc = 1) {
 		$total = $this->fetchTotal($arrayData);
-		$total++;
+		$total = $total + $inc;
 		$votesData = array(
 			'votes'	=>	$total
 		); 
@@ -93,9 +93,9 @@ class Vote extends Model {
 		return "Incremented.";
 	}
 	
-	function decrement($arrayData) {
+	function decrement($arrayData, $inc = 1) {
 		$total = $this->fetchTotal($arrayData);
-		$total--;
+		$total = $total - $inc;
 		$votesData = array(
 			'votes'	=>	$total
 		); 

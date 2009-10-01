@@ -1,0 +1,3 @@
+add already voted count fix (tack onto arrayData)
+add check for user votes
+add JS has voted check
