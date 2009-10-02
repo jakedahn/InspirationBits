@@ -12,8 +12,8 @@
 	 * Tables.
 	 **/
 	$config['tables']['groups'] = 'groups';
-	$config['tables']['users'] = 'users';
-	$config['tables']['meta'] = 'meta';
+	$config['tables']['users']  = 'users';
+	$config['tables']['meta']   = 'meta';
 	
 	/**
 	 * Default group, use name

@@ -18,6 +18,7 @@
 					<?if ($this->redux_auth->logged_in()): ?>
 						<li><a href="<?= base_url()?>manage">Manage</a></li>
 						<li><a href="<?= base_url()?>auth/logout">Logout</a></li>
+						<li><a href="<?= base_url()?>/profile">Profile</a></li>
 					<?endif ?>
 					<?php if (!$this->redux_auth->logged_in()): ?>
 						<li><a href="<?= base_url()?>auth">Login</a></li>
