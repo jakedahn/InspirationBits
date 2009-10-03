@@ -14,6 +14,14 @@
         <div id="wrapper">
             <div id="header">
                 <h1>InspirationBits</h1>
+                <?if ($this->redux_auth->logged_in()): ?>
+      						<select name="some_name" id="some_name" onchange="" size="1">
+                    <? foreach ($results as $result): $data['result'] = $result; ?>
+                      <option value="<?=$result->id;?>"><?=$result->class_id;?></option>
+                    <? endforeach?>
+                  </select>
+      					<?endif ?>
+                
 				<ul id="auth">
 					<?if ($this->redux_auth->logged_in()): ?>
 						<li><a href="<?= base_url()?>manage">Manage</a></li>
