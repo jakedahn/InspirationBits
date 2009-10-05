@@ -49,8 +49,11 @@ class Classes extends MY_Controller {
   }
   
   function add() {
-
-			$this->educlass->addStudentClass();
-			redirect('');
+      if($this->educlass->fetchClassbyClassID($this->input->post('add_class_id')) != NULL) {
+			  $this->educlass->addStudentClass();
+			  redirect('');
+			} else {
+			  die("Class does not exist");
+			}
 	}
 }

@@ -32,8 +32,8 @@ class Educlass extends Model {
 
 		$query		= $this->db->get();
 		$results	= $query->result();
-
-		return $results['0'];
+    if(isset($results['0'])) return $results['0'];
+    else return NULL;
 	}
 	
 	function fetchStudentClasses($id) {

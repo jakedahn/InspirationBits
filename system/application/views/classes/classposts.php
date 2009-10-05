@@ -1,3 +1,4 @@
+
 		<h2><?php echo $class_name; ?> Posts</h2>
 		<? foreach ($results as $result): $data['result'] = $result; ?>
 			<?php if ($result->post_status == 0): ?>

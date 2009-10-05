@@ -46,10 +46,12 @@
 <?php        }
               } ?>
                </select>
+               <?php if($this->redux_auth->profile()->group != "teacher") { ?>
                <?=form_open('classes/add');?>
                     <input type="text" name="add_class_id" value="" id="add_class_id"/>
                    <input type="submit" name="submit" value="Add" id="submit" />
                </form>
+               <?php } ?>
              <?php  } ?>
                 
 				<ul id="auth">
