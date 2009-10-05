@@ -51,16 +51,7 @@ class Educlass extends Model {
 	
 	function addStudentClass()
 	{
-	  $this->db->select('classes');
-	  $this->db->from('users');
-	  $this->db->where('id', $this->redux_auth->profile()->id);
-	  
-	  $query = $this->db->get();
-	  
-	  $results = $query->result();
-	  $student =  $results['0'];
-	  $classes = $student->classes;
-	  $this->db->flush_cache();
+	  $classes = implode(",", $this->fetchStudentClasses($this->redux_auth->profile()->id));
 	  $classes = $classes.",".$this->input->post('add_class_id');
 	  
 	  $data['classes'] = $classes;

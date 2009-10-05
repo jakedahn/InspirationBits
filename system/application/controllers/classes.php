@@ -51,6 +51,6 @@ class Classes extends MY_Controller {
   function add() {
 
 			$this->educlass->addStudentClass();
-			redirect('/');
+			redirect('');
 	}
 }
