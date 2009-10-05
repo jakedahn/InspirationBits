@@ -14,13 +14,43 @@
         <div id="wrapper">
             <div id="header">
                 <h1>InspirationBits</h1>
-                <?if ($this->redux_auth->logged_in()): ?>
-      						<select name="some_name" id="some_name" onchange="" size="1">
-                    <? foreach ($results as $result): $data['result'] = $result; ?>
-                      <option value="<?=$result->id;?>"><?=$result->class_id;?></option>
-                    <? endforeach?>
-                  </select>
-      					<?endif ?>
+                <?if ($this->redux_auth->logged_in()) { ?>
+                  <select name="classes" id="classes" onchange="javascript:document.location.href = '/classes/'+this.value;" size="1">
+                     <?php
+                     if($this->uri->segment(2, 0) == 0) { ?>
+                       <option value="0">No Class Selected</option>
+<?php                      }
+                     
+                     if($this->redux_auth->profile()->group == "teacher") {
+                      
+                      $classes = $this->educlass->fetchTeacherClasses($this->redux_auth->profile()->id);
+                     
+                     foreach ($classes as $result): ?>
+                      <option value="<?=$result->class_id;?>"<?php if($this->uri->segment(2, 0) == $result->class_id) echo " selected";?>><?=$result->class_id;?></option>
+                    <? endforeach;
+      					  }
+      					else
+      					{
+      					  ?>
+      					  <?php
+      					  $classes = $this->educlass->fetchStudentClasses($this->redux_auth->profile()->id);
+      					  if($classes['0'] != "") {
+                  foreach ($classes as $result) {
+                    $class = $this->educlass->fetchClassbyClassID($result);
+                    ?>
+                  <option value="<?=$class->class_id;?>"<?php if($this->uri->segment(2, 0) == $class->class_id) echo " selected";?>><?=$class->class_name;?></option>
+              <?php }}
+              else
+              { ?>
+                <option value="0">You Have No Classes Added</option>
+<?php        }
+              } ?>
+               </select>
+               <?=form_open('classes/add');?>
+                    <input type="text" name="add_class_id" value="" id="add_class_id"/>
+                   <input type="submit" name="submit" value="Add" id="submit" />
+               </form>
+             <?php  } ?>
                 
 				<ul id="auth">
 					<?if ($this->redux_auth->logged_in()): ?>
