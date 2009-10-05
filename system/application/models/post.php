@@ -52,6 +52,35 @@ class Post extends Model {
 
 		return $results;
 	}
+	
+	function grabClassPosts($id, $user, $is_teacher) {
+		
+    $aliases = $this->build_db_select_with_aliases(
+			array(
+				$this->posts_table 		=> $this->posts_fields,
+				$this->images_table 	=> $this->images_fields,
+				$this->quotes_table 	=> $this->quotes_fields, 
+				$this->links_table 		=> $this->links_fields
+			)
+		);
+
+		$this->db->select($aliases);
+		$this->db->join($this->images_table, $this->images_table . '.post_id = ' . $this->posts_table .'.id', 'left');
+		$this->db->join($this->quotes_table, $this->quotes_table . '.post_id = ' . $this->posts_table .'.id', 'left');
+		$this->db->join($this->links_table, $this->links_table . '.post_id = ' . $this->posts_table .'.id', 'left');
+
+		$this->db->from($this->posts_table);
+		$this->db->where($this->posts_table . '.status', '0');
+		$this->db->where('class', $id);
+    
+    
+    $this->db->order_by($this->posts_table . '.date', 'desc');
+
+		$query		= $this->db->get();
+		$results	= $query->result();
+
+		return $results;
+	}
 
 	function build_db_select_with_aliases($array) {
 		$temp_alias_string = '';
@@ -74,7 +103,8 @@ class Post extends Model {
 	function insertItem($postType='', $uploadData='') {
 		$postsData = array(
 			'user'		=>		$this->redux_auth->profile()->id,
-			'type'		=>		$postType
+			'type'		=>		$postType,
+			'class'   =>    $this->input->post('class')
 		); 
 		$this->db->insert('posts', $postsData);	
 

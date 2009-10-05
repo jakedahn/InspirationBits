@@ -16,7 +16,19 @@ class Manage extends MY_Controller {
 		else{
 			$data['profile'] = $this->redux_auth->profile();
 		
-			$this->db->where('user', $this->redux_auth->profile()->id);
+			
+			if($this->redux_auth->profile()->group == "teacher")
+      {
+        $classes = $this->educlass->fetchTeacherClasses($this->redux_auth->profile()->id);
+       $this->db->where('user', $this->redux_auth->profile()->id);
+       foreach ($classes as $result) {
+        $this->db->or_where('class', $result->id); 
+       }
+      }
+      else
+      {
+        $this->db->where('user', $this->redux_auth->profile()->id);
+      }
 			$data['results'] = $this->post->grabAllPosts();
 			
 			$this->load->view('layout', $data);
@@ -30,8 +42,8 @@ class Manage extends MY_Controller {
 	function delete() {
 		
 		$getPost = $this->db->get_where('posts', array('id' => $this->uri->segment(3)))->result();
-		
-		if ($this->redux_auth->profile()->id == @$getPost[0]->user) {
+		$getClass = $this->db->get_where('classes', array('id' => @$getPost[0]->class))->result();
+		if ($this->redux_auth->profile()->id == @$getPost[0]->user || $this->redux_auth->profile()->id == @$getClass[0]->teacher) {
 			$this->db->where('id', $this->uri->segment(3));
 			$this->db->update('posts', array('status' => 1));
 			

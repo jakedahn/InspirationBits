@@ -1,0 +1,2 @@
+add check for user votes
+add JS has voted check

@@ -10,7 +10,7 @@ class Posts extends MY_Controller {
 
 	function index() {
 		$data['results'] = $this->post->grabAllPosts();
-
+		
 		$this->load->view('layout', $data);
 	}
 
